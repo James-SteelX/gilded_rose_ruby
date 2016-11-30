@@ -102,6 +102,12 @@ describe GildedRose do
        described_class.new(items).update_quality
        expect(items[0].quality).to eq 0
      end
+
+     it 'quality wont go above 50' do
+       items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 1, 49)]
+       described_class.new(items).update_quality
+       expect(items[0].quality).to eq 50
+     end
     end
 
     context 'Conjured' do

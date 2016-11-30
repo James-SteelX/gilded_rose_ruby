@@ -41,7 +41,7 @@ class GildedRose
     end
     product.quality -= 2
   end
-  
+
   def normal_product(product)
    product.sell_in -= 1
    return if product.quality == 0
@@ -57,15 +57,23 @@ class GildedRose
   end
 
   def backstage_tickets(ticket)
-    if ticket.sell_in == 0 then ticket.quality = 0 end
-    return if ticket.sell_in == 0
-    ticket.sell_in -= 1
-    if ticket.sell_in > 10
-      ticket.quality += 1
-    elsif ticket.sell_in < 5
-      ticket.quality += 3
-    else
-      ticket.quality += 2
-    end
+   if ticket.sell_in == 0 then ticket.quality = 0 end
+   return if ticket.sell_in == 0 || ticket.quality >= 50
+   ticket.sell_in -= 1
+   if ticket.sell_in > 10
+    ticket.quality += 1
+   elsif ticket.sell_in < 5
+    ticket.quality += 3
+   else
+    ticket.quality += 2
+   end
+   ticket_quality_check(ticket)
   end
+
+  def ticket_quality_check(ticket)
+   if ticket.quality > 50
+    ticket.quality = 50
+   end
+  end
+
 end
