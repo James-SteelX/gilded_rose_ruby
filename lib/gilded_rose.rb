@@ -18,10 +18,10 @@ class GildedRose
   end
 
   def item_check(product)
-    if product.name == AGED_BRIE
+    if product.name == SULFURAS
+      return
+    elsif product.name == AGED_BRIE
       aged_brie(product)
-    elsif product.name == SULFURAS
-      sulfuras(product)
     elsif product.name == BACKSTAGE_TICKETS
       backstage_tickets(product)
     elsif product.name == CONJURED
@@ -41,12 +41,7 @@ class GildedRose
     end
     product.quality -= 2
   end
-
-  def sulfuras(sulfuras)
-    sulfuras.quality += 0
-    sulfuras.sell_in -= 0
-  end
-
+  
   def normal_product(product)
    product.sell_in -= 1
    return if product.quality == 0

@@ -106,9 +106,9 @@ describe GildedRose do
 
     context 'Conjured' do
       it 'degrades twice as fast as normal items' do
-        items = [Item.new("Conjured cookie crumbs", 2, 4)]
+        items = [Item.new("Conjured cookie crumbs", 2, 10)]
         described_class.new(items).update_quality
-        expect(items[0].quality).to eq 2
+        expect(items[0].quality).to eq 8
       end
 
       it 'the quality wont go negative' do
